@@ -1,0 +1,22 @@
+﻿
+<div style="display:flex; flex-wrap:wrap; justify-content: center;" width="100%">
+
+@model IEnumerable<Game>
+
+    <header> I hate Web </header>
+
+    @if(Model != null){
+
+        <h2> Game Count: @ViewBag.ammountGam </h2>
+
+        @foreach (Game game in Model){
+
+            <partial name="_GamePartial.cshtml" for="@game" />
+
+        }
+
+    }
+
+    <footer> Yep Still hate Web </footer>
+
+    </div>

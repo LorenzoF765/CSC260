@@ -1,0 +1,57 @@
+﻿@model Game
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+            <div class="row">
+
+                 <div class="col-sm-4">
+
+                    @if(@Model.Image != null) { <img src="/Images/@Model.Image"/> }
+
+                @if(@Model.Title != null && @Model.Platform != null && @Model.Genre != null && @Model.Esrb != null && @Model.Year != null){
+
+                <h4> @Model.Title </h4>
+
+                <h4> Platforms: @Model.Platform </h4>
+
+                <h4> Genre: @Model.Genre </h4>
+
+                <h4> ESRB: @Model.Esrb </h4>
+
+                <h4> Year: @Model.Year </h4>
+
+                }
+
+                @if(@Model.LoanedDate.HasValue){
+
+                    <h4> Loaned To: @Model.LoanedTo  </h4>
+
+                    <h4> Loaned On: @Model.LoanedDate  </h4>
+
+                    <form asp-action ="loanGam" asp-route-id ="@Model.Id" method ="post">
+                    
+                        <button type="submit"> Return Game </button>
+                                            
+                    </form>
+
+
+                }else{
+
+                    <form asp-action="Collection" asp-route-id="@Model.Id" method="post">
+
+                        <input asp-for ="LoanedTo" name="LoanedTo" placeholder="Put name here" required />
+
+                        <button type="submit"> Loan Game </button>
+
+                    </form>
+
+                }
+
+                </div>
+                    
+            </div>
+
+
+            }

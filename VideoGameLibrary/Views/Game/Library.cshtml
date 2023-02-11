@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Game>
+
+<br />
+<div style="display: flex; flex-direction: row; justify-content: center">
+	<form class="d-flex" method="post" asp-controller="Game" asp-action="Search">
+		<div class="input-group">
+			<input name="key" class="form-control" type="search" placeholder="Search">
+			<button class="btn btn-secondary btn-lg" type="submit"><i class="bi bi-search"></i></button>
+		</div>
+	</form>
+	<form asp-controller="Game" asp-action="Create" method="get">
+		<button class="btn btn-info" type="submit" style="margin-left: 2rem">Add a game</button>
+	</form>
+</div>
+<br />
+<div style="display: flex; flex-direction: row; justify-content: center">
+	<form asp-controller="Game" asp-action="Filter" method=post>
+		<div style="display: flex; flex-direction: row; justify-content: center">
+			<input name="Genere" class="form-control" style="margin-right: 1rem" placeholder="Genere" />
+			<input name="Platform" class="form-control" style="margin-right: 1rem" placeholder="Platform" />
+			<input name="ESRB" class="form-control" style="margin-right: 1rem" placeholder="ESRB" />
+			<button type="submit" class="btn btn-success">Filter</button>
+		</div>
+	</form>
+</div>
+
+<h1>Game List</h1>
+<h3>You have @Model.Count() games. @ViewBag.Search</h3>
+@if (Model == null)
+{
+	<h2>No movies provided</h2>
+}
+else
+{
+	<div style="display:flex; flex-direction: row; flex-wrap: wrap; justify-content: center">
+		@foreach (Game game in Model)
+		{
+			<partial name="_GamePartialView.cshtml" for="@game" />
+		}
+	</div>
+	<br />
+}

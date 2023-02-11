@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Movie>
+
+<h1>Movie List</h1>
+@if (Model == null)
+{
+	<h2>No movies provided</h2>
+}
+else
+{
+	foreach (Movie movie in Model)
+	{
+		<partial name="_MoviePartialView.cshtml" for="@movie" />
+	}
+}
